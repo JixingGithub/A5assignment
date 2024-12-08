@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <!-- dynamic display -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Student Task Reminder</title>
+    <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+<!-- Container -->
+<div class="container">
+
+    <!-- Today's Overview Section -->
+    <section class="today-overview">
+        <div class="date-display">
+            <span class="current-date">11/18/24</span>
+        </div>
+        <div class="today-tasks">
+            <h2>Today’s Tasks</h2>
+            <!-- If no tasks, show "Nothing to do" -->
+            <!-- Example: "Nothing to do" -->
+            <div class="task-list">
+                <!-- Sample tasks for today -->
+                <div class="task">
+                    <span class="task-category academic">Academic</span>
+                    <span class="task-title">Read Chapter 3</span>
+                </div>
+                <div class="task">
+                    <span class="task-category social">Social</span>
+                    <span class="task-title">Dinner with friend</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Upcoming Events Preview -->
+    <section class="upcoming-preview">
+        <h3>Upcoming Events</h3>
+        <div class="upcoming-list">
+            <div class="event">
+                <span class="event-date">Nov 33, 2024:</span>
+                <span class="event-desc">
+            <span class="task-category medical">Dental appointment</span>,
+            <span class="task-category career">Career fair</span>
+          </span>
+            </div>
+            <div class="event">
+                <span class="event-date">Nov 55, 2024:</span>
+                <span class="event-desc">
+            <span class="task-category academic">Project due</span>
+          </span>
+            </div>
+        </div>
+        <button class="expand-upcoming">...</button>
+        <div class="chat-bubble upcoming-popup hidden">
+            <p>More upcoming events:</p>
+            <ul>
+                <li><span class="task-category medical">Doctor's Check-up</span> on Nov 25</li>
+                <li><span class="task-category career">Interview prep</span> on Nov 26</li>
+                <li><span class="task-category social">Concert</span> on Nov 27</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Monthly Grid View -->
+    <section class="month-view">
+        <h2>November 2024</h2>
+        <div class="calendar-grid">
+            <!-- Create a grid of days. For simplicity, we’ll assume a fixed month layout. -->
+
+            <!-- Placeholder cells -->
+            <div class="day"><span class="date-number">1</span></div>
+            <div class="day"><span class="date-number">2</span></div>
+            <div class="day"><span class="date-number">3</span></div>
+            <div class="day"><span class="date-number">4</span></div>
+            <div class="day"><span class="date-number">5</span></div>
+            <div class="day"><span class="date-number">6</span></div>
+            <div class="day"><span class="date-number">7</span></div>
+            <div class="day"><span class="date-number">8</span></div>
+            <div class="day"><span class="date-number">9</span></div>
+            <div class="day"><span class="date-number">10</span></div>
+            <div class="day"><span class="date-number">11</span></div>
+            <div class="day"><span class="date-number">12</span></div>
+            <div class="day"><span class="date-number">13</span></div>
+            <div class="day"><span class="date-number">14</span></div>
+            <div class="day"><span class="date-number">15</span></div>
+            <div class="day"><span class="date-number">16</span></div>
+            <div class="day"><span class="date-number">17</span></div>
+            <div class="day"><span class="date-number">18</span></div>
+            <div class="day"><span class="date-number">19</span></div>
+            <div class="day"><span class="date-number">20</span></div>
+            <div class="day"><span class="date-number">21</span></div>
+            <div class="day"><span class="date-number">22</span></div>
+            <div class="day"><span class="date-number">23</span></div>
+            <div class="day"><span class="date-number">24</span></div>
+            <div class="day"><span class="date-number">25</span></div>
+            <div class="day"><span class="date-number">26</span></div>
+            <div class="day"><span class="date-number">27</span></div>
+            <div class="day"><span class="date-number">28</span></div>
+            <div class="day"><span class="date-number">29</span></div>
+            <div class="day"><span class="date-number">30</span></div>
+            <div class="day"><span class="date-number">31</span></div>
+        </div>
+    </section>
+
+    <!-- Popups for tasks (placeholder structure, show/hide with JS) -->
+    <div class="chat-bubble day-popup hidden">
+        <!-- For days with tasks: -->
+        <div class="day-tasks-detail">
+            <h4>Tasks on Nov 1:</h4>
+            <ul>
+                <li>
+                    <span class="task-category academic">Read Chapter 2</span>
+                    <button class="reschedule" title="Reschedule"><span>&lt;–&gt;</span></button>
+                    <button class="remove" title="Remove"><span>x</span></button>
+                </li>
+                <li>
+                    <span class="task-category career">LinkedIn Update</span>
+                    <button class="reschedule" title="Reschedule"><span>&lt;–&gt;</span></button>
+                    <button class="remove" title="Remove"><span>x</span></button>
+                </li>
+            </ul>
+            <button class="add-task">Add/Edit Tasks</button>
+        </div>
+
+        <!-- For empty days: -->
+        <div class="empty-day-message hidden">
+            <p>Have a great day :)</p>
+            <button class="add-task">Add Tasks</button>
+        </div>
+    </div>
+
+</div>
+<div class="day-popup hidden">
+    <div class="day-tasks-detail hidden"></div>
+    <div class="empty-day-message hidden">
+        <p>Have a great day :)</p>
+        <button class="add-task">Add Tasks</button>
+    </div>
+</div>
+
+<!-- JavaScript -->
+<script src="script.js"></script>
+
+</body> <!-- end of BODY -->
+</html>
