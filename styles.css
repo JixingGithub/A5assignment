@@ -1,3 +1,6 @@
+/* =========================================================
+   Base Styles
+   ========================================================= */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -13,7 +16,13 @@ body {
     padding: 1rem;
 }
 
-/* Today’s Overview */
+.hidden {
+    display: none;
+}
+
+/* =========================================================
+   Today’s Overview Section
+   ========================================================= */
 .today-overview {
     display: flex;
     flex-direction: column;
@@ -25,9 +34,29 @@ body {
 }
 
 .date-display {
+    display: flex;
+    align-items: center;
+    gap: 10px;
     font-size: 1.2rem;
     font-weight: bold;
     margin-bottom: 0.5rem;
+}
+
+/* Weather info inside date-display */
+.weather-icon {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.weather-icon img {
+    width: 30px;
+    height: 30px;
+}
+
+.temperature {
+    font-size: 0.9em;
+    color: #666;
 }
 
 .today-overview h2 {
@@ -37,6 +66,7 @@ body {
     padding-bottom: 0.5rem;
 }
 
+/* Today’s task list */
 .task-list {
     display: flex;
     flex-direction: column;
@@ -49,6 +79,13 @@ body {
     gap: 0.5rem;
 }
 
+.task-title {
+    font-size: 0.95rem;
+}
+
+/* =========================================================
+   Task Category Styles
+   ========================================================= */
 .task-category {
     display: inline-block;
     padding: 0.2rem 0.5rem;
@@ -56,6 +93,7 @@ body {
     font-size: 0.85rem;
     color: #fff;
     font-weight: bold;
+    cursor: pointer;
 }
 
 .task-category.academic {
@@ -74,11 +112,9 @@ body {
     background: #9b59b6;
 }
 
-.task-title {
-    font-size: 0.95rem;
-}
-
-/* Upcoming Events */
+/* =========================================================
+   Upcoming Events Preview
+   ========================================================= */
 .upcoming-preview {
     background: #fff;
     padding: 1rem;
@@ -103,6 +139,7 @@ body {
     margin-right: 0.5rem;
 }
 
+/* Expand button for upcoming events popup */
 .expand-upcoming {
     background: #eee;
     border: none;
@@ -115,6 +152,7 @@ body {
     right: 1rem;
 }
 
+/* Chat bubble for upcoming popup */
 .upcoming-popup {
     position: absolute;
     top: 2.5rem;
@@ -137,7 +175,9 @@ body {
     border-color: transparent transparent #fff transparent;
 }
 
-/* Month View */
+/* =========================================================
+   Monthly Grid View
+   ========================================================= */
 .month-view {
     background: #fff;
     padding: 1rem;
@@ -157,6 +197,7 @@ body {
     grid-gap: 0.5rem;
 }
 
+/* Each day cell */
 .day {
     background: #fefefe;
     border: 1px solid #ddd;
@@ -171,12 +212,28 @@ body {
     background: #f1f1f1;
 }
 
+.day.empty {
+    background: #f5f5f5;
+    cursor: default;
+}
+
+.day.past {
+    background-color: #f5f5f5;
+    opacity: 0.7;
+    cursor: default;
+}
+
+.day.past .date-number {
+    color: #999;
+}
+
 .date-number {
     font-weight: bold;
     margin-bottom: 0.5rem;
     display: inline-block;
 }
 
+/* Task blocks within each day */
 .task-blocks {
     display: flex;
     flex-direction: column;
@@ -193,25 +250,12 @@ body {
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    cursor: pointer;
 }
 
-.task-block.academic {
-    background: #4a90e2;
-}
-
-.task-block.medical {
-    background: #e74c3c;
-}
-
-.task-block.career {
-    background: #27ae60;
-}
-
-.task-block.social {
-    background: #9b59b6;
-}
-
-/* Chat Bubble (for day popups, empty day messages) */
+/* =========================================================
+   Chat Bubble (Used for day popups, etc.)
+   ========================================================= */
 .chat-bubble {
     position: absolute;
     background: #fff;
@@ -233,10 +277,9 @@ body {
     border-color: transparent transparent #fff transparent;
 }
 
-.hidden {
-    display: none;
-}
-
+/* =========================================================
+   Day Popup (Viewing Tasks, Empty State)
+   ========================================================= */
 .day-tasks-detail ul {
     list-style: none;
     padding: 0;
@@ -251,6 +294,7 @@ body {
     font-size: 0.9rem;
 }
 
+/* Buttons within task detail popup */
 .reschedule, .remove {
     background: none;
     border: none;
@@ -277,45 +321,67 @@ body {
     padding: 0.4rem 0.8rem;
     border-radius: 4px;
     cursor: pointer;
+    font-size: 0.9rem;
 }
 
 .add-task:hover {
     background: #357abd;
 }
 
-/* Responsive */
-@media (max-width: 600px) {
-    .calendar-grid {
-        grid-template-columns: repeat(3, 1fr);
-    }
-
-    .upcoming-popup {
-        width: 150px;
-    }
+.empty-day-message p {
+    margin-top: 0;
 }
 
-/* TASK ENTRY BAR WITH COLOR */
+/* =========================================================
+   Task Entry Popup (Add/Edit Tasks)
+   ========================================================= */
+/*correct size task entry bar*/
+.task-entry-popup,
+.task-entry-popup * {
+    box-sizing: border-box;
+}
 .task-entry-popup {
-    z-index: 1000;
+    position: absolute;
+    z-index: 9999;
+    /* Remove or lower min-width if it's too large */
     min-width: 200px;
+    max-width: 250px;
+    background: #f5f7fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    border: 1px solid #e1e4e8;
+    padding: 16px;
+    animation: popupFade 0.2s ease-out;
 }
 
-.task-entry-popup input {
+.task-input {
     width: 100%;
-    padding: 8px;
+    padding: 8px 12px;
     border: 1px solid #ddd;
-    border-radius: 4px;
+    border-radius: 6px;
+    font-size: 14px;
+    margin-bottom: 12px;
+    box-sizing: border-box;
+}
+/*task bubble for hover effect*/
+.task-block {
+    cursor: pointer;
+    transition: background-color 0.2s ease, filter 0.2s ease;
+}
+.task-block:hover {
+    filter: brightness(0.9);
 }
 
+/* Color picker inside task entry popup */
 .color-picker {
     display: flex;
     gap: 8px;
-    margin: 8px 0;
+    margin-bottom: 12px;
 }
 
 .color-picker button {
-    width: 24px;
-    height: 24px;
+    width: 30px;
+    height: 30px;
     border-radius: 50%;
     border: none;
     cursor: pointer;
@@ -326,50 +392,112 @@ body {
     transform: scale(1.1);
 }
 
-.add-btn {
+.color-picker button.selected {
+    border: 2px solid #000;
+    box-shadow: 0 0 0 2px white;
+}
+
+/* Buttons in task popup */
+.add-btn, .save-btn {
     width: 100%;
     padding: 8px;
-    background: #4a90e2;
+    background: #0366d6;
     color: white;
     border: none;
-    border-radius: 4px;
+    border-radius: 6px;
     cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 8px;
 }
 
-.add-btn:hover {
-    background: #357abd;
+.add-btn:hover, .save-btn:hover {
+    background: #0256b9;
 }
 
-.empty {
-    background: #f5f5f5;
-    cursor: default;
-}
-
-.event .task-category {
-    margin-right: 5px;
-    padding: 2px 6px;
-    border-radius: 3px;
+/* Delete Task button inside edit form */
+.delete-btn {
+    width: 100%;
+    padding: 8px;
+    background: #e74c3c;
     color: white;
-    font-size: 0.85rem;
-}
-.upcoming-preview {
-    display: block !important;
-    visibility: visible !important;
-    min-height: 100px;
-}
-
-.upcoming-list {
-    display: block !important;
-    visibility: visible !important;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    margin-top: 8px;
 }
 
-/*FOR PAST DATES */
-.day.past {
-    background-color: #f5f5f5;
-    opacity: 0.7;
-    cursor: default;
+.delete-btn:hover {
+    background: #c0392b;
 }
 
-.day.past .date-number {
-    color: #999;
+/* Subtle animation for popup */
+@keyframes popupFade {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =========================================================
+   Responsive Styles
+   ========================================================= */
+@media (max-width: 600px) {
+    .calendar-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .upcoming-popup {
+        width: 150px;
+    }
+}
+
+/* =========================================================
+   Additional Styles for Interactive Elements
+   ========================================================= */
+
+/* Delete task icon in today's tasks section */
+.delete-task-btn {
+    background: none;
+    border: none;
+    color: #666;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 5px;
+}
+
+.delete-task-btn:hover {
+    color: #ff0000;
+}
+/* =========================================================
+   Clock render
+   ========================================================= */
+.digital-clock-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #0256b9;
+    border: 1px solid #00ff00;
+    border-radius: 8px;
+    min-height: 90px;
+    margin-top: 15px;
+}
+
+.digital-clock {
+    color: #0f0;
+    font-family: 'Courier New', monospace;
+    font-size: 2rem;
+    letter-spacing: 0.1rem;
+    text-align: center;
+    padding: 10px;
+}
+
+.digital-clock .clock-time {
+    text-shadow: 0 0 5px #0f0;
 }
